@@ -50,7 +50,7 @@
     "vue-demi": "latest"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.43.1",
+    "@antfu/eslint-config": "^2.0.0",
     "@types/cypress": "^0.1.6",
     "@types/node": "^20.17.16",
     "@vitejs/plugin-vue": "^5.1.3",
