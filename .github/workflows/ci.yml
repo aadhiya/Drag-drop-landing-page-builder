@@ -1,0 +1,53 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - develop
+  pull_request:
+    branches:
+      - main
+      - master
+      - develop
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [20]
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@master
+
+      - name: Setup node env 🏗
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          check-latest: true
+
+      - name: Install Dependencies 👨🏻‍💻
+        uses: ./.github/actions/install-dependencies
+
+      - name: Run linter 👀
+        run: pnpm lint
+
+      - name: Run tests 🧪
+        uses: cypress-io/github-action@v5
+        with:
+          install-command: pnpm cypress install
+          start: pnpm ci:test
+          command: pnpm test
+          browser: chrome
+
+      - name: Build App 🛠
+        run: pnpm build
