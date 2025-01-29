@@ -1,159 +1,161 @@
-[![Revue Draggable](./docs/static/revue-draggable.gif)](https://draggable.vueflow.dev)
+# Landing Page Builder
 
-![top-language](https://img.shields.io/github/languages/top/bcakmakoglu/revue-draggable)
-[![dependencies Status](https://status.david-dm.org/gh/bcakmakoglu/revue-draggable.svg)](https://david-dm.org/bcakmakoglu/revue-draggable)
-[![devDependencies Status](https://status.david-dm.org/gh/bcakmakoglu/revue-draggable.svg?type=dev)](https://david-dm.org/bcakmakoglu/revue-draggable?type=dev)
-![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/bcakmakoglu/revue-draggable)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/bcakmakoglu/revue-draggable)
-![GitHub last commit](https://img.shields.io/github/last-commit/bcakmakoglu/revue-draggable)
+🚀 A simple, drag-and-drop landing page builder built with Vue 3.
+It features editable text and image blocks, resizing, reordering, duplication, and deletion with JSON export functionality.
 
-**Make your Vue components draggable. 🤏**
+## 📌 Features
 
-**Supports Vue 2 and Vue 3!** Comes with a 🔋 batteries included component / directive / composable or
-for users who want more control a simple abstraction over drag events with the core, wich is also available
-as a component / directive / composable.
+- 🔲 **Two Draggable Blocks:**
+  - **Text Block:** Editable text content.
+  - **Image Block:** Select from 3 predefined images.
+- 🖱️ **Drag & Drop:** Rearrange elements with ease.
+- 📏 **Resizable Blocks:** Adjust block size dynamically.
+- ➕ **Duplicate & ❌ Delete:** Easily duplicate or remove blocks.
+- 💾 **JSON Export:** Saves page structure and content to JSON.
+- 📱 **Responsive Design:** Works across different screen sizes.
+- 🧪 **Cypress Test Cases:** Automated tests ensure stability.
 
-Based on [React Draggable](https://www.npmjs.com/package/react-draggable#draggablecore).
+## 📖 Table of Contents
 
-Check the [Docs 📔](https://draggable-docs.vueflow.dev) for an in-depth explanation and
-the [Demo 🪄](https://draggable.vueflow.dev) to see Revue Draggable in action.
+- 📦 [Setup](#setup)
+- 🚀 [Quickstart](#quickstart)
+- 🛠 [Development](#development)
+- 🕵🏻‍♂️ [Tests](#tests)
+- ⚡ [JSON Export](#json-export)
+- 🎨 [Styling](#styling)
+- 📌 [Features Recap](#features-recap)
+- 📜 [Credits & License](#credits--license)
 
-## Table of Contents
+---
 
-* [🛠 Setup](#-setup)
+## 📦 Setup
 
-    * [Registering Revue Draggable ](#-registering-revue-draggable)
+To install dependencies, run:
 
-* [🎮 Quickstart](#-quickstart)
+```sh
+# Using npm
+npm install
 
-* [🧪 Development](#-development)
+# Using yarn
+yarn install
 
-* [🕵🏻‍♂️ Tests](#-tests)
-
-* [💝 Sponsors](#-sponsors)
-
-## 🛠 Setup
-
-```bash
-$ npm i --save @braks/revue-draggable
-
-# or
-$ yarn add @braks/revue-draggable
-
-# or
-$ pnpm add @braks/revue-draggable
+# Using pnpm
+pnpm install
 ```
 
-For Vue2 add the composition-api to your dependencies (if you're using Vue < 2.7).
-```bash
-$ yarn add @braks/revue-draggable @vue/composition-api
+## 🚀 Quickstart
 
-# or
-$ npm i --save @braks/revue-draggable @vue/composition-api
+Run the project locally with:
+
+```sh
+npm run dev
 ```
 
-### Using the components
+Then, open [http://localhost:3000](http://localhost:3000) in your browser.
 
-#### Webpack (Vue2)
+---
 
-```js
-// webpack.config.js
+## 🛠 Development
 
-resolve: {
-    alias: {
-        vue: 'vue/dist/vue.js'
-    }
-}
+This project is built using Vue 3, Vite, and Tailwind CSS.
+
+### Registering Draggable Blocks
+
+The app uses Vue's directive-based approach for drag-and-drop functionality.
+
+Example usage:
+
+```vue
+<!-- Draggable Text Block -->
+<div v-draggable class="draggable-box">
+  <textarea v-model="editableText"></textarea>
+</div>
 ```
 
-#### [Nuxt](https://nuxtjs.org/)
-
-```ts {}[nuxt.config.ts]
-// nuxt.config.ts
-export default {
-    alias: {
-        vue: 'vue/dist/vue.js'
-    }
-}
-```
-
-### 🔌 Registering Revue Draggable 
-
-```ts {}[main.ts]
-// Vue3
-import { createApp } from 'vue';
-import Draggable, { DraggablePlugin, DraggableDirective } from '@braks/revue-draggable';
-
-const app = createApp();
-
-// Use as Plugin (registers directives and components)
-app.use(DraggablePlugin);
-
-// or
-app.directive('draggable', DraggableDirective)
-app.component('Draggable', Draggable);
-
-app.mount('#root');
-```
-
-```ts {}[main.ts]
-// Vue2 
-import Vue from 'vue';
-import { DraggablePlugin, DraggableDirective } from '@braks/revue-draggable';
-
-// Use as Plugin
-Vue.use(DraggablePlugin)
-
-// or
-Vue.directive('draggable', DraggableDirective)
-Vue.component('Draggable', Draggable)
-```
-
-## 🎮 Quickstart
-
-The easiest way to make your elements draggable is by using the **DraggableDirective** which will handle everything for you
-with no configuration necessary.
-
-````vue {}[App.vue]
-<div v-draggable="/* Pass DraggableProps as binding value here */" class="box">I use a directive to make myself draggable</div>
-````
-
-Or use the component wrapper.
-(In Vue2 make sure to include the full-build, runtime-build only works for Vue3.)
-````vue {}[App.vue]
-<Draggable>
-  <div class="box">I use a wrapper</div>
-</Draggable>
-````
-
-Check [the example file](./example/App.vue) for more in-detail examples like dropping elements, setting boundaries or syncing states.
-
-## 🧪 Development
-
-This project uses [Vite](https://vitejs.dev/) for development and [Rollup](https://rollupjs.org/) to create a distribution.
-
-```bash
-# start (dev)
-$ pnpm dev
-
-# build app
-$ pnpm build
-
-# serve app from build
-$ pnpm serve
-
-# build dist
-$ pnpm build:dist
-```
-
-## 🐛 Debugging
-
-Set the environment variable `DRAGGABLE_DEBUG` to enable logs on drag handlers.
+---
 
 ## 🕵🏻‍♂️ Tests
 
-Testing is done with Cypress.
-You can find the specs in the [cypress directory](/cypress);
-```bash
-$ pnpm ci # starts test server and runs tests, make sure port 3000 is open
+This project uses Cypress for testing.
+
+### Running Tests
+
+```sh
+npm run cypress:open  # Opens Cypress test runner
+npm run test          # Runs all tests in headless mode
 ```
+
+Test cases ensure that:
+
+- Blocks are draggable.
+- Text content is editable.
+- Image selection updates correctly.
+- Blocks can be duplicated & deleted.
+- JSON export logs the correct data.
+
+---
+
+## ⚡ JSON Export
+
+When clicking the Save button, all block data is exported as JSON and logged in the console.
+
+Example:
+
+```json
+[
+  {
+    "id": 1,
+    "type": "text",
+    "content": "Editable text",
+    "width": 350,
+    "height": 250
+  },
+  {
+    "id": 2,
+    "type": "image",
+    "selectedImage": "image2.jpg",
+    "width": 350,
+    "height": 380
+  }
+]
+```
+
+---
+
+## 🎨 Styling
+
+This project uses CSS & Tailwind CSS for styling.
+
+### Main UI improvements:
+
+- Modern UI with gradient backgrounds.
+- Sticky navigation bar with action buttons.
+- Smooth animations for hover effects & transitions.
+
+
+---
+
+## 📌 Features Recap
+
+✅ **Drag & Drop Builder**  
+✅ **Editable Text & Images**  
+✅ **Resizable Blocks**  
+✅ **Duplicate & Delete Blocks**  
+✅ **JSON Export Functionality**  
+✅ **Responsive Design**  
+✅ **Cypress Test Cases**  
+
+---
+
+## 📜 Credits & License
+
+This project is based on the original work of **@bcakmakoglu**. Some parts of the code were adapted from their Revue Draggable repository.
+
+### **Modifications & Enhancements**
+
+- Integrated a **Landing Page Builder** with draggable blocks.
+- Added **editable text** and **image selection** functionality.
+- Implemented **resizing, duplication, deletion, and JSON export**.
+- Enhanced **styling and responsiveness**.
+
+The project is released under the **MIT License**, as per the original repository. See the [LICENSE](LICENSE) file for details.
