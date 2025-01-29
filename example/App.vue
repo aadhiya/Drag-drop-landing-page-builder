@@ -137,8 +137,8 @@ export default defineComponent({
       v-for="block in blocks"
       :key="block.id"
       v-draggable="{ handle: 'strong' }"
-      class="relative bg-white shadow-md rounded-lg border border-gray-400 p-4 flex flex-col"
-      :style="{ width: block.width + 'px', minHeight: block.height + 'px' }"
+       class="draggable-box"
+  :style="{ width: block.width + 'px', minHeight: block.height + 'px' }"
     >
       <strong class="cursor-move block text-lg font-semibold">Drag here</strong>
 
