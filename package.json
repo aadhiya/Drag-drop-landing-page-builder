@@ -1,10 +1,10 @@
 {
-  "name": "@braks/revue-draggable",
+  "name": "aadhiya/Fun_Blocks",
   "version": "0.5.1",
   "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/bcakmakoglu/revue-draggable"
+    "url": "https://github.com/aadhiya/Fun_Blocks"
   },
   "keywords": [
     "vue",
@@ -15,8 +15,8 @@
     "composition api"
   ],
   "license": "MIT",
-  "author": "Burak Cakmakoglu<https://github.com/bcakmakoglu>",
-  "homepage": "https://draggable.vueflow.dev",
+  "author": "Aadhiya",
+  "homepage": "",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
