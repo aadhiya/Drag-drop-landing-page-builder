@@ -90,9 +90,11 @@ export default defineComponent({
 </script>
 
 <template>
-  <div id="app">
+  <div id="app" class="fixed inset-0 w-full min-h-screen bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 animate-gradient">
+    
     <!-- ✅ HEADER SECTION (Sticky with Gradient) -->
-    <header class="fixed top-0 left-0 w-full bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg text-white py-4 px-6 z-50 flex justify-between items-center">
+    <header class="fixed top-0 left-0 w-full bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 animate-gradient shadow-lg text-white py-4 px-6 z-50 flex justify-between items-center">
+
       <!-- Logo Upload -->
       <div class="flex items-center">
         <label for="logo-upload" class="cursor-pointer flex items-center">
@@ -121,15 +123,13 @@ export default defineComponent({
       </div>
     </header>
 
-    <!-- ✅ HERO SECTION (Editable) -->
-    <section class="hero bg-gray-100 text-center py-10 px-15 mt-10">
-      <textarea
-        v-model="heroText"
-        class="hero-title w-full text-4xl font-bold text-center bg-transparent border-none outline-none resize-none"
-        rows="2"
-      ></textarea>
-      
-    </section>
+   <!-- ✅ HERO SECTION (Editable) -->
+    <div class="relative h-40 w-full flex justify-center items-center bg-cover bg-center" style="background-image: url('/your-image.jpg');">
+  <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+  <div class="relative z-10 text-white text-center">
+    <h1 class="text-3xl font-bold">{{ heroText }}</h1>
+  </div>
+</div>
 
      <!-- ✅ GRID SYSTEM FOR BLOCKS -->
      <div class="container mx-auto grid grid-cols-3 gap-6 p-6 transition-all">
@@ -213,4 +213,15 @@ export default defineComponent({
 .image-container img {
   @apply w-full h-auto rounded-md border object-contain;
 }
+  @keyframes gradient {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+.animate-gradient {
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+}
+
 </style>
