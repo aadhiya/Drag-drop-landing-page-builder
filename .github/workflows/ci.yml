@@ -42,7 +42,7 @@ jobs:
         run: pnpm lint
 
       - name: Run tests 🧪
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           install-command: pnpm cypress install
           start: pnpm ci:test
